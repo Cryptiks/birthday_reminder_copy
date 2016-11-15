@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <!-- Settings for responsive layout -->
+    <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'>
+    <!-- Bootstrap CSS -->
+    <link rel = 'stylesheet' type = 'text/css' href = '/stylesheets/bootstrap.min.css'>
+    <!-- Custom styles for this template -->
+    <link rel = 'stylesheet' type = 'text/css' href = '/stylesheets/custom.css' />
+
+    <!-- JQuery (necessary for Bootstrap's Javascript plugins) -->
+    <script src = '/javascripts/jquery-1.11.3.min.js'></script>
+
+
+    <!-- link to Bootstrap's Javascript plugins -->
+    <script src = '/javascripts/bootstrap.min.js'></script>
+
+
+    <!-- Styles and Scripts for fullcalendar -->
+    <link rel='stylesheet' href='fullcalendar/fullcalendar.css'/>
+    <script src='fullcalendar/lib/jquery.min.js'></script>
+    <script src='fullcalendar/lib/moment.min.js'></script>
+    <script src='fullcalendar/fullcalendar.js'></script>
+
+    <script src="/javascripts/parsley.min.js"></script>
+
+
+    <script>
+    $(document).ready(function() {
+      var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+
+      var data = $.getJSON('/JSONfeed', {}, function(data) {
+        console.log(data);
+
+        var calendar = $('#calendar').fullCalendar({
+          header:{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+          // events: {{events}}
+          // events: [
+          //   {
+          //     title: 'All Day Event',
+          //     start: new Date(y, m, 1)
+          //   },
+          //   {
+          //     title: 'Long Event',
+          //     start: new Date(y, m, d-5),
+          //     end: new Date(y, m, d-2)
+          //   },
+          // ],
+
+          // timeFormat: '(:mm)' // uppercase H for 24-hour clock
+          events: data
+
+        });
+
+
+      } );
+      // console.log('asfs');
+      // console.log(data);
+      // for (k in data) {
+      //   console.log(k);
+      // }
+      // console.log(data.responseJSON);
+      // console.log(data.responseText);
+      // $.ajax({
+      //   type: "GET",
+      //   url: "/JSONfeed",
+      // });
+
+      // var data =[{"title":"Test A","start":"2015-09-20"},{"title":"Jessica Wang","start":"2015-09-19"},{"title":"Sharon Choi","start":"2015-11-03"},{"title":"Hell Yeah","start":"2015-01-11"},{"title":"Jenn Rodriguez","start":"2015-08-05"},{"title":"Test B","start":"2015-10-01"},{"title":"Test C","start":"2015-12-10"}];
+
+      // data = JSON.parse(data);
+
+
+    });
+
+    </script>
+
+  </head>
+  <body>
+
+    <div class ="container">
+
+    {{#if user}}
+    <!-- NAVBAR
+================================================== -->
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Birthday Reminder</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li id = "li-home"><a href="/">Home</a></li>
+                <li id = 'li-add-birthday'><a href="add-birthday">Add Birthday</a></li>
+                <li id = 'li-view-all'><a href="view-all">View All Birthdays</a></li>
+                <li id = 'li-play-game' class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Play Game <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="game-by-name">By Name</a></li>
+                    <li><a href="game-by-birthday">By Birthday</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+    Logged in as {{user.username}} (<a href = '/logout'>Logout</a>)
+    <br>
+    <br>
+    {{else}}
+
+        <div class = "page-header">
+          <h1 class >Birthday Reminder</h1>
+          <p class = "lead">You will never forget your friend's birthday! <p>
+        </div>
+    {{/if}}
+
+
+    {{{body}}}
+
+    </div>
+
+    <div class = "footer-container">
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Birthday Reminder &nbsp; &nbsp; &nbsp; &nbsp; Created By: Wilson Wong &nbsp; &nbsp; &nbsp; &nbsp; Contact Information: ww686@nyu.edu</p>
+      </div>
+    </footer>
+    </div>
+
+
+  </body>
+</html>

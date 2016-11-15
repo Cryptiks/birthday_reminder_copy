@@ -1,0 +1,29 @@
+{{message}}
+
+
+<form class = 'register-form' method = "POST" action = "" data-parsley-validate="">
+
+  Username: <br class = 'login'><input type = 'text' name = 'username' class = "form-control" data-parsley-length="[4, 20]" data-parsley-group="block1" style = 'width: 200px'>
+  <br>
+  Password: <br class = 'login'><input type = 'password' name = 'password' class = "form-control"  data-parsley-length="[4, 20]" data-parsley-group="block2" style = 'width: 200px'>
+  <br>
+  <div class="invalid-form-error-message"></div>
+
+  <input type = 'submit' value = 'Register' class="btn btn-default validate">
+  <br>
+  <br>
+  Already have an account? <a href = 'login'>Login</a>.
+</form>
+
+<script type="text/javascript">
+$(function () {
+  $('.register-form').parsley().on('form:validate', function (formInstance) {
+    var ok = formInstance.isValid('block1', true) && formInstance.isValid('block2', true);
+    $('.invalid-form-error-message')
+      .html(ok ? '' : 'You must fill in both username and a password!')
+      .toggleClass('filled', !ok);
+    if (!ok)
+      formInstance.validationResult = false;
+  });
+});
+</script>

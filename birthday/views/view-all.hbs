@@ -1,0 +1,196 @@
+<form method = "GET" action "">
+  Show Only Month:
+  <!-- <input id = 'month'  type = "text" name = "month"> -->
+  <select name="month" id="month" onchange="" size="1">
+    <option value="january">January</option>
+    <option value="february">February</option>
+    <option value="march">March</option>
+    <option value="april">April</option>
+    <option value="may">May</option>
+    <option value="june">June</option>
+    <option value="july">July</option>
+    <option value="august">August</option>
+    <option value="september">September</option>
+    <option value="october">October</option>
+    <option value="november">November</option>
+    <option value="december">December</option>
+</select>
+  <input id = 'submit' type = "submit" value = 'Refresh'>
+  <input id = 'show-all' type = "submit" value = 'Show All'>
+</form>
+
+<div id = 'birthday-list'>
+<h2>January</h2>
+<ul>
+{{#each january}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>February</h2>
+<ul>
+{{#each february}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>March</h2>
+<ul>
+{{#each march}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>April</h2>
+<ul>
+{{#each april}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>May</h2>
+<ul>
+{{#each may}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>June</h2>
+<ul>
+{{#each june}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>July</h2>
+<ul>
+{{#each july}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>August</h2>
+<ul>
+{{#each august}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>September</h2>
+<ul>
+{{#each september}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>October</h2>
+<ul>
+{{#each october}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>November</h2>
+<ul>
+{{#each november}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+
+<h2>December</h2>
+<ul>
+{{#each december}}
+<li>{{day}} - {{friend}}</li>
+{{/each}}
+</ul>
+</div>
+
+<script>
+
+var li = document.getElementById('li-view-all');
+li.setAttribute('class','active');
+
+var body = document.body;
+body.style.backgroundImage = "url('/images/background0.jpg')";
+
+var btn = document.getElementById('submit');
+btn.addEventListener('click', function(evt) {
+  console.log('clicked');
+  evt.preventDefault();
+  var url = "http://localhost:3000/api/view-all";
+  var month = document.getElementById('month').value;
+  var monthName = month.toLowerCase();
+  if (monthName === 'january') {
+    month = '01';
+  }
+  else if (monthName === 'february') {
+    month = '02';
+  }
+  else if (monthName === 'march') {
+    month = '03';
+  }
+  else if (monthName === 'april') {
+    month = '04';
+  }
+  else if (monthName === 'may') {
+    month = '05';
+  }
+  else if (monthName === 'june') {
+    month = '06';
+  }
+  else if (monthName === 'july') {
+    month = '07';
+  }
+  else if (monthName === 'august') {
+    month = '08';
+  }
+  else if (monthName === 'september') {
+    month = '09';
+  }
+  else if (monthName === 'october') {
+    month = '10';
+  }
+  else if (monthName === 'november') {
+    month = '11';
+  }
+  else if (month === 'december') {
+    month = '12';
+  }
+  else {
+    month = '';
+    // location.reload();
+  }
+  url = url + "?month=" + month;
+  var req = new XMLHttpRequest();
+  req.open('GET', url, true);
+  // req.send();
+  req.addEventListener("load", function() {
+    console.log("here");
+    console.log(req.responseText);
+    var newList = document.createElement('div');
+    newList.id = "birthday-list";
+    var h2 = document.createElement('h2');
+    var monthUpperCase = capitalizeFirstLetter(monthName);
+    h2.textContent = monthUpperCase;
+    newList.appendChild(h2);
+    JSON.parse(req.responseText).forEach(function(birthday) {
+      var ul = newList.appendChild(document.createElement('ul'));
+      ul.appendChild(document.createElement('li')).textContent = birthday.day + ' - ' + birthday.friend;
+    });
+    var birthdayList = document.getElementById('birthday-list');
+    birthdayList.parentNode.replaceChild(newList, birthdayList);
+  });
+  req.send();
+});
+
+var showButton = document.getElementById('show-all');
+showButton.addEventListener('click', function(evt) {
+  location.reload();
+})
+
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+</script>

@@ -1,0 +1,213 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 30px;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+
+.navbar-wrapper {
+  position: relative;
+  right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    margin-left: 5px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#calendar {
+  width: 80%;
+  margin-left: 8%;
+}
+
+.game {
+  text-align: center;
+}
+
+/*game css*/
+
+/*table {
+  display: inline-block;
+  margin: auto;
+  border-spacing: 10px;
+}
+
+td {
+  text-align: center;
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+#title {
+  display block;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid LightBlue;
+}
+
+#win {
+  display: block;
+  width: 50%;
+  margin: auto;
+  background-color: LightBlue;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
+}*/
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  height: 90%;
+  border: 10px solid #00B7FF;
+}
+
+.item {
+  height: 10em;
+  width: 10em;
+  transition-property: background-color;
+  transition-delay: .25s;
+  transition-duration: 1s;
+}
+
+item:hover {
+  height: 11em;
+  width: 11em;
+}
+
+
+body {
+  font-family: sans-serif;
+  /*background-image: url('/images/background0.jpg');*/
+  background-size: 1600px 1200px;
+  background-repeat: no-repeat;
+  background
+}
+.stylish {
+  font-size:1.5em;
+  padding: 1em;
+  margin: 20px;
+  border-radius: 10px;
+  border : 2px solid black;
+}
+.c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: stretch;
+}
+
+.item-space {
+  display: block;
+  margin: 15px;
+}
+
+.button-block {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+}
+
+#give-up-button {
+  font-size: 1.5em;
+  background-color: black;
+  color: white;
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #101010;
+
+  background-color: #222;
+  border-color: #080808;
+}
+
+.text-muted {
+    margin: 15px 0;
+    color: white;
+}
+
+.footer-container {
+  margin-top: 100px;
+}
+
+
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border: 1px solid #D6E9C6;
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+  color: #B94A48;
+  background-color: #F2DEDE;
+  border: 1px solid #EED3D7;
+}
+
+.parsley-errors-list {
+  margin: 2px 0 3px;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0.9em;
+  line-height: 0.9em;
+  opacity: 0;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
+}
+
+.login {
+  line-height: 150%;
+}

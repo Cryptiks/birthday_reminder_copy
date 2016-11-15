@@ -1,0 +1,15 @@
+<script>
+var li = document.getElementById('li-home');
+if (li) {
+  li.setAttribute('class','active');
+}
+</script>
+
+{{#if user}}
+<br>
+<div id='calendar'></div>
+
+{{else}}
+<p><a href = 'login'>Login</a> or <a href = 'register'>Register</a> to get started.</p>
+<br>
+{{/if}}

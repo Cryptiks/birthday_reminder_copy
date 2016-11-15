@@ -1,0 +1,49 @@
+<script>
+var li = document.getElementById('li-add-birthday');
+li.setAttribute('class','active');
+
+var body = document.body;
+body.style.backgroundImage = "url('/images/background0.jpg')";
+
+
+
+
+// background-size:     cover;
+// background-repeat:   no-repeat;
+// background-position: center center;
+
+
+function validateForm() {
+    var firstName = document.forms["addform"]["firstName"].value;
+    var lastName = document.forms["addform"]["lastName"].value;
+    if (firstName == null || firstName == "") {
+        alert("First name must be filled out.");
+        return false;
+    }
+    else if (firstName.indexOf(' ') >= 0) {
+        alert("First name cannot have spaces.");
+        return false;
+    }
+    else if (lastName == null || lastName == "") {
+        alert("Last name must be filled out.");
+        return false;
+    }
+    else if (lastName.indexOf(' ') >= 0) {
+        alert("Last name cannot have spaces.");
+        return false;
+    }
+
+}
+</script>
+
+{{message}}
+<form name = 'addform' method = 'POST' action = '' onsubmit="return validateForm()">
+  First Name: <input type = 'text' name = 'firstName'>
+  Last Name: <input type = 'text' name = 'lastName'>
+  <br>
+  <br>
+  Birthday: <input type = 'date' name = 'birthday' required>
+  <br>
+  <br>
+  <input type = 'submit' value = 'Add Birthday'>
+</form>
